@@ -1,0 +1,31 @@
+import java.util.*;
+import java.util.Scanner;
+public class Palindrome {
+    public static boolean isPalindromeNumber(int x)
+    {
+        if(x<0)
+        {
+            return false;
+        }
+        final int numDigits = (int)(Math.floor(Math.log10(x)))+1;
+        int modMask = (int)Math.pow(10,numDigits-1);
+        for(int i=0;i<(numDigits/2);++i)
+        {
+            if(x/ modMask != x%10)
+            {
+                return false;
+            }
+            x %= modMask;//Remove the most significant digit of x
+            x/=10;//remove the least significant digit of x
+            modMask/=100;
+        }
+        return true;
+    }
+    public static void main(String args[]) {
+      int x;
+      Scanner S=new Scanner(System.in);
+      x=S.nextInt();
+
+      System.out.println(isPalindromeNumber(x));
+    }
+}
